@@ -17,41 +17,59 @@ const router = express.Router();
  *     Car:
  *       type: object
  *       properties:
- *         title:
+ *         id:
+ *           type: number
+ *           description: The car's ID
+ *         year:
+ *           type: number
+ *           description: The car's manufacturing year
+ *         make:
  *           type: string
- *           description: The car's title
- *         category:
+ *           description: The car's make
+ *         model:
  *           type: string
- *           description: The car's category
- *         name:
- *           type: string
- *           description: The car's name
- *         date:
- *           type: string
- *           description: The car's date
+ *           description: The car's model
  *         type:
  *           type: string
  *           description: The car's type
- *         sex:
+ *         img:
  *           type: string
- *           description: The car's sex
- *         location:
+ *           description: URL of the car's image
+ *         description:
  *           type: string
- *           description: The car's location
- *         price:
+ *           description: Description of the car
+ *         fuelConsumption:
  *           type: string
- *           description: The car's price
- *         comments:
+ *           description: Fuel consumption information
+ *         engineSize:
  *           type: string
- *           description: Comments about the car
- *         avatarURL:
+ *           description: The car's engine size
+ *         accessories:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Array of accessories
+ *         functionalities:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Array of functionalities
+ *         rentalPrice:
+ *           type: number
+ *           description: The car's rental price
+ *         RentalCompany:
  *           type: string
- *           description: URL of the car's avatar
- *         owner:
+ *           description: The rental company
+ *         address:
  *           type: string
- *           description: Owner's ID
+ *           description: The car's address
+ *         rentalConditions:
+ *           type: string
+ *           description: Rental conditions
+ *         mileage:
+ *           type: number
+ *           description: The car's mileage
  */
-
 /**
  * @swagger
  * /api/cars/getOne/{carId}:
@@ -88,27 +106,26 @@ router.get("/getOne/:carId", wrapper(ctrlCar.getOne));
  *     security:
  *       - bearerAuth: []
  *     parameters:
- *       - in: path
- *         name: category
- *         schema:
- *           type: string
- *         required: true
- *         description: Category of cars to retrieve (sell, in-good-hands, lost-found)
  *       - in: query
- *         name: query
+ *         name: brand
  *         schema:
  *           type: string
- *         description: Filter cars by a search query
+ *         description: Filter cars by brand
  *       - in: query
- *         name: age
+ *         name: price
  *         schema:
  *           type: string
- *         description: Filter cars by age
+ *         description: Filter cars by price
  *       - in: query
- *         name: sex
+ *         name: from
  *         schema:
  *           type: string
- *         description: Filter cars by sex
+ *         description: Filter cars by minimum mileage
+ *       - in: query
+ *         name: to
+ *         schema:
+ *           type: string
+ *         description: Filter cars by maximum mileage
  *       - in: query
  *         name: page
  *         schema:
